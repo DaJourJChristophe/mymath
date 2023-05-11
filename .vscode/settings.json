@@ -1,0 +1,24 @@
+{
+  "files.associations": {
+    "stdlib.h": "c",
+    "cmath": "c",
+    "program.h": "c",
+    "stdio.h": "c",
+    "stddef.h": "c",
+    "math.h": "c",
+    "stdint.h": "c",
+    "types.h": "c",
+    "stdbool.h": "c",
+    "common.h": "c",
+    "immintrin.h": "c",
+    "matrix.h": "c",
+    "setjmp.h": "c",
+    "stdarg.h": "c",
+    "cmocka.h": "c",
+    "benchmark.h": "c"
+  },
+  "cSpell.words": [
+    "actuals",
+    "cmocka"
+  ]
+}
