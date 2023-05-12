@@ -1,4 +1,13 @@
+*.a
+*.dll
+*.exe
+*.o
+*.so
 
 .vscode
+
+bin/*
+!bin/.keep
+!bin/benchmark/.keep
 
 build/

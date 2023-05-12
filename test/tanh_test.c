@@ -1,49 +1,59 @@
-#include "program.h"
-#include "scalar.h"
+#include <stdarg.h>
+#include <stddef.h>
+#include <setjmp.h>
+
+#include <cmocka.h>
 #include "wrapper.h"
 
-#include <benchmark/benchmark.h>
+#include "common.h"
+#include "program.h"
+#include "scalar.h"
+
 #include <math.h>
-#include <string.h>
+#include <stdint.h>
+#include <stdio.h>
 
-static void BM_NaiveScalarTanhTest(benchmark::State& state)
+/**
+ * @brief An alternant implementation of the floating-point floor
+ *        function for testing purposes.
+ * @param x A 64 bit floating-point scalar value.
+ */
+static scalar_t __manual_tanh__(scalar_t x)
 {
-  const scalar_t epsilon = EPSILON;
-  const scalar_t n       = MAX_TEST_DEPTH;
-        scalar_t x       = MIN_TEST_DEPTH;
-
-  scalar_t buffer[MAX_ITEMS_TEST];
-  memset(buffer, 0, (MAX_ITEMS_TEST * sizeof(scalar_t)));
-
-  for (auto _ : state)
-  {
-    for (uint64_t i = 0; i < MAX_ITEMS_TEST && x < n; x += epsilon, i++)
-    {
-      tanh(x);
-    }
-  }
+  return tanh(x);
 }
 
-static void BM_ScalarTanhTest(benchmark::State& state)
+/**
+ * @brief A test for the scalar operation of a 64 bit floating-point
+ *        cubed root function.
+ * @param state A multidimensional list of objects used by CMocka.
+ */
+static void scalar_tanh_test(void unused **state)
 {
-  const scalar_t epsilon = EPSILON;
-  const scalar_t n       = MAX_TEST_DEPTH;
-        scalar_t x       = MIN_TEST_DEPTH;
-
-  scalar_t buffer[MAX_ITEMS_TEST];
-  memset(buffer, 0, (MAX_ITEMS_TEST * sizeof(scalar_t)));
-
-  for (auto _ : state)
-  {
-    for (uint64_t i = 0; i < MAX_ITEMS_TEST && x < n; x += epsilon, i++)
-    {
-      __tanh__(x);
-    }
-  }
+  scalar_test(&__tanh__);
 }
 
-BENCHMARK(BM_NaiveScalarTanhTest);
+/**
+ * @brief A test for the vector operation of a 64 bit floating-point
+ *        cubed root function.
+ * @param state A multidimensional list of objects used by CMocka.
+ */
+// static void vector_tanh_test(void unused **state)
+// {
+// }
 
-BENCHMARK(BM_ScalarTanhTest);
+/**
+ * @brief The test start.
+ * @return An integer return status.
+ */
+int main(void)
+{
+  const struct CMUnitTest tests[] = {
+    cmocka_unit_test(scalar_tanh_test),
+    //cmocka_unit_test(vector_tanh_test),
+  };
 
-BENCHMARK_MAIN();
+  init_test_cache(&__manual_tanh__);
+
+  return cmocka_run_group_tests(tests, NULL, NULL);
+}

@@ -37,9 +37,9 @@ static void scalar_cbrt_test(void unused **state)
  *        cubed root function.
  * @param state A multidimensional list of objects used by CMocka.
  */
-static void vector_cbrt_test(void unused **state)
-{
-}
+// static void vector_cbrt_test(void unused **state)
+// {
+// }
 
 /**
  * @brief The test start.
@@ -49,7 +49,7 @@ int main(void)
 {
   const struct CMUnitTest tests[] = {
     cmocka_unit_test(scalar_cbrt_test),
-    cmocka_unit_test(vector_cbrt_test),
+    //cmocka_unit_test(vector_cbrt_test),
   };
 
   init_test_cache(&__manual_cbrt__);

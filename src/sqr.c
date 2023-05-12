@@ -14,7 +14,7 @@ static inline double always_inline __internal_sqr__(const double x)
  * @param x A 64 bit floating-point value.
  * @return A 64 bit floating-point value.
  */
-double sqr(const double x)
+double __sqr__(const double x)
 {
   return __internal_sqr__(x);
 }

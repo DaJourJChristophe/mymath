@@ -89,7 +89,7 @@ double __cbrt__(const double x);
  * @param x A 64 bit floating-point value.
  * @return A 64 bit floating-point value.
  */
-double sqr(const double x);
+double __sqr__(const double x);
 
 /**
  * @brief Take the cube a floating-point value.
